@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './Layout.css';
 
 interface LayoutProps {
@@ -19,7 +19,9 @@ export const Layout: React.FC<LayoutProps> = ({ children, headerAction }) => {
                         </div>
                         <h1>Stellar Tasks</h1>
                     </div>
-                    {headerAction && <div className="header-action">{headerAction}</div>}
+                    <div className="flex items-center gap-4">
+                        {headerAction && <div className="header-action">{headerAction}</div>}
+                    </div>
                 </div>
             </header>
             <main className="app-main">

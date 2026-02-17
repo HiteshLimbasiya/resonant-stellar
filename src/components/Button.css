@@ -74,3 +74,10 @@
     font-size: var(--font-size-lg);
     height: 48px;
 }
+
+.btn-icon {
+    padding: 0.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}

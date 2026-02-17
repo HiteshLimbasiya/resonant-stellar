@@ -3,14 +3,15 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../lib/supabase';
 import type { Task } from '../types/Task';
 
-export function useSupabaseTasks() {
+export function useSupabaseTasks(userId?: string) {
     const [tasks, setTasks] = useState<Task[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        fetchTasks();
-    }, []);
+        if (userId) fetchTasks();
+        else setTasks([]); // Clear tasks if no user
+    }, [userId]);
 
     async function fetchTasks() {
         try {
@@ -44,6 +45,7 @@ export function useSupabaseTasks() {
                 description,
                 completed: false,
                 created_at: new Date().toISOString(),
+                user_id: userId,
             };
 
             const { data, error } = await supabase
